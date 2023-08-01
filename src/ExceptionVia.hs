@@ -1,5 +1,6 @@
 {-# LANGUAGE AllowAmbiguousTypes   #-}
 {-# LANGUAGE ConstraintKinds       #-}
+{-# LANGUAGE CPP                   #-}
 {-# LANGUAGE DerivingStrategies    #-}
 {-# LANGUAGE DerivingVia           #-}
 {-# LANGUAGE FlexibleContexts      #-}
@@ -212,5 +213,9 @@ mkHierarchy nm = do
   [d|
     instance Hierarchy (conT nm) where
       toParent = $(conE constrName)
+#if MIN_VERSION_template_haskell(2,18,0)
+      fromParent $(pure $ ConP constrName [] [VarP (mkName "e")]) = cast e
+#else
       fromParent $(pure $ ConP constrName [VarP (mkName "e")]) = cast e
+#endif
     |]
