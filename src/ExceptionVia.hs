@@ -211,7 +211,7 @@ mkHierarchy nm = do
   constrName <- getConName con
 
   [d|
-    instance Hierarchy (conT nm) where
+    instance Hierarchy $(conT nm) where
       toParent = $(conE constrName)
 #if MIN_VERSION_template_haskell(2,18,0)
       fromParent $(pure $ ConP constrName [] [VarP (mkName "e")]) = cast e
