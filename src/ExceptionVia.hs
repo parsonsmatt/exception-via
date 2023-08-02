@@ -107,6 +107,13 @@ import           Language.Haskell.TH.Quote
 newtype ExceptionVia big lil = ExceptionVia { unExceptionVia :: lil }
   deriving Show
 
+
+instance (Hierarchy big, Exception big, Exception lil) => Exception (ExceptionVia big lil) where
+  toException (ExceptionVia e) = toException (toParent @big e)
+  fromException e =
+    ExceptionVia
+      <$> (fromParent =<< fromException @big e)
+
 -- | A concise operator alias for 'ExceptionVia'.
 --
 -- Given a wrapper exception type like @SomeCompilerException@, you can
