@@ -4,6 +4,7 @@ version:            0.2.0.0
 description:
   Please see the README on GitHub at <https://github.com/parsonsmatt/exception-via#readme>
 
+category:           Exceptions
 synopsis:           DerivingVia for your hierarchical exceptions
 homepage:           https://github.com/parsonsmatt/exception-via#readme
 bug-reports:        https://github.com/parsonsmatt/exception-via/issues
