@@ -26,7 +26,7 @@ library
   other-modules:    Paths_exception_via
   hs-source-dirs:   src
   build-depends:
-      base              >=4.7 && <5
-    , template-haskell  <2.21
+      base              >=4.7     && <5
+    , template-haskell  >=2.9.0.0 && <2.21
 
   default-language: Haskell2010
